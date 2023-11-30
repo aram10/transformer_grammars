@@ -15,9 +15,9 @@
 
 """Train a TG / TXL (trees) / TXL (words) model."""
 
-
 # This needs to be put first -- it prevents TF from allocating GPU memory.
 import os
+
 os.environ["TF_ENABLED_DEVICE_TYPES"] = "CPU"
 
 # pylint: disable=g-import-not-at-top,g-bad-import-order
@@ -27,9 +27,8 @@ from absl import flags
 from ml_collections import config_flags
 from transformer_grammars.training import train
 
-
 _CONFIG = config_flags.DEFINE_config_file("config")
 
 if __name__ == "__main__":
-  flags.mark_flag_as_required("config")
-  app.run(functools.partial(train.main, _CONFIG))
+    flags.mark_flag_as_required("config")
+    app.run(functools.partial(train.main, _CONFIG))

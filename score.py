@@ -17,6 +17,7 @@
 
 # This needs to be put first -- it prevents TF from allocating GPU memory.
 import os
+
 os.environ["TF_ENABLED_DEVICE_TYPES"] = "CPU"
 
 # pylint: disable=g-import-not-at-top,g-bad-import-order
@@ -24,7 +25,6 @@ import functools
 from absl import app
 from absl import flags
 from transformer_grammars import score
-
 
 _CHECKPOINT = flags.DEFINE_string("checkpoint", None, "Checkpoint to load.")
 _INPUT = flags.DEFINE_string(
@@ -40,14 +40,13 @@ _ADD_EOS = flags.DEFINE_bool(
     ),
 )
 
-
 if __name__ == "__main__":
-  app.run(
-      functools.partial(
-          score.main,
-          _TOKENIZER,
-          _CHECKPOINT,
-          _INPUT,
-          _ADD_EOS,
-      )
-  )
+    app.run(
+        functools.partial(
+            score.main,
+            _TOKENIZER,
+            _CHECKPOINT,
+            _INPUT,
+            _ADD_EOS,
+        )
+    )
